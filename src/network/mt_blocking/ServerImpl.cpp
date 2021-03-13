@@ -31,7 +31,7 @@ namespace MTblocking {
 ServerImpl::ServerImpl(std::shared_ptr<Afina::Storage> ps, std::shared_ptr<Logging::Service> pl) : Server(ps, pl) {}
 
 // See Server.h
-ServerImpl::~ServerImpl() {} // TODO
+ServerImpl::~ServerImpl() {}
 
 // See Server.h
 void ServerImpl::Start(uint16_t port, uint32_t n_accept, uint32_t n_workers) {
@@ -135,7 +135,6 @@ void ServerImpl::OnRun() {
             setsockopt(client_socket, SOL_SOCKET, SO_RCVTIMEO, (const char *)&tv, sizeof tv);
         }
 
-        // TODO: Start new thread and process data from/to connection
         {
             std::lock_guard<std::mutex> _lock(_mutex);
             if (_sockets.size() < _max_workers && running.load()) {
